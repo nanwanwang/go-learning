@@ -35,6 +35,7 @@ func main() {
 		fmt.Println(num)
 	}
 
+	//使用range迭代
 	for i := range arr3 {
 		fmt.Println(i)
 	}
