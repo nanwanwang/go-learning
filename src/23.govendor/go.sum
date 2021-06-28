@@ -1,0 +1,4 @@
+github.com/cnych/stardust v0.0.0-20190712081641-3205cb7bb5c1 h1:vfmALzidEGjHA6brh7mzuXqGQWAvjx8UtSAsbYy8Uwk=
+github.com/cnych/stardust v0.0.0-20190712081641-3205cb7bb5c1/go.mod h1:sWhlTI5cUqwoUNu9Du8WJfE5NYUFitubp3DoE44ooyw=
+github.com/satori/go.uuid v1.2.0 h1:0uYX9dsZ2yD7q2RtLRtPSdGDWzjeM3TbMJP9utgA0ww=
+github.com/satori/go.uuid v1.2.0/go.mod h1:dA0hQrYB0VpLJoorglMZABFdXlWrHn1NEOzdhQKdks0=

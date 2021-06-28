@@ -1,0 +1,8 @@
+# github.com/cnych/stardust v0.0.0-20190712081641-3205cb7bb5c1
+## explicit
+github.com/cnych/stardust/encodingx/base64x
+github.com/cnych/stardust/encodingx/hexx
+github.com/cnych/stardust/uuidx
+# github.com/satori/go.uuid v1.2.0
+## explicit
+github.com/satori/go.uuid
