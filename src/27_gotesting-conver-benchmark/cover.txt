@@ -1,0 +1,4 @@
+mode: set
+27_gotesting-conver-benchmark/calculate/calculate.go:3.23,5.2 1 1
+27_gotesting-conver-benchmark/calculate/calculate.go:7.22,9.2 1 1
+27_gotesting-conver-benchmark/calculate/calculate.go:11.21,13.2 1 1

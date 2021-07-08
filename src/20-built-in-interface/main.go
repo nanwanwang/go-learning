@@ -1,7 +1,7 @@
 package main
 
 import (
-	"20.常用系统接口/example"
+	"20-built-in-interface/example"
 	"fmt"
 )
 
