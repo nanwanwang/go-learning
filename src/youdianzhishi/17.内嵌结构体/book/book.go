@@ -14,9 +14,9 @@ type book struct {
 }
 
 type techBook struct{
-	Cat string
+	Cat   string
 	Title string
-	int  //匿名字段
+	int   //匿名字段
 	book  //匿名字段
 }
 
@@ -39,7 +39,7 @@ func RefTag(b book, idx int) {
 }
 
 func InitTechBook(){
-	bk:=NewBook(1000,"go","demon","about go")
+	bk:= NewBook(1000,"go","demon","about go")
 	tb:=new(techBook)
 	tb.Cat="tech"
 	tb.book.title = "techBook Title"
