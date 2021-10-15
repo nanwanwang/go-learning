@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"reflect"
+	"strconv"
 	"strings"
 )
 
@@ -72,15 +73,58 @@ func LoadIni(fileName string, data interface{}) (err error) {
 				err = fmt.Errorf("line:%d synatx error", idx+1)
 				return
 			}
-			
-			v:=reflect.ValueOf(data)
-			structObj:=v.Elem().FieldByName(structName)
-			if structObj.Kind()!=reflect.Struct{
-				err= fmt.Errorf("data中的%s字段应该是一个结构体",structName) 
+			index := strings.Index(line, "=")
+			key := strings.TrimSpace(line[:index])
+			value := strings.TrimSpace(line[index+1:])
+			v := reflect.ValueOf(data)
+			structValue := v.Elem().FieldByName(structName) //嵌套结构体值信息
+
+			structType := structValue.Type() //嵌套结构体类型信息
+
+			if structType.Kind() != reflect.Struct {
+				err = fmt.Errorf("data中的%s字段应该是一个结构体", structName)
 				return
 			}
 
-			strings.Split(line, "=")
+			var fieldName string
+			var fieldType reflect.StructField
+
+			for i := 0; i < structType.NumField(); i++ {
+				f := structType.Field(i) //tag信息是存储在类型信息中
+				fieldType = f
+				if f.Tag.Get("ini") == key {
+					fieldName = f.Name
+					break
+				}
+			}
+			if len(fieldName) == 0 {
+				continue
+			}
+
+			//取出结构体字段
+			fieldValue := structValue.FieldByName(fieldName)
+			fmt.Println(fieldName, fieldType.Type.Kind())
+			//赋值
+			switch fieldType.Type.Kind() {
+			case reflect.String:
+				fieldValue.SetString(value)
+			case reflect.Int, reflect.Int16, reflect.Int8, reflect.Int32, reflect.Int64:
+				var num int64
+				num, err = strconv.ParseInt(value, 0, 64)
+				if err != nil {
+					err = fmt.Errorf("line:%d,value type error:%s", idx+1, value)
+					return
+				}
+				fieldValue.SetInt(num)
+			case reflect.Bool:
+				var boolValue bool
+				boolValue,err=strconv.ParseBool(value)
+				if err!=nil{
+					err= fmt.Errorf("line:%d,value type error:%s",idx+1,value)
+				}
+				fieldValue.SetBool(boolValue)
+			}
+
 		}
 
 	}

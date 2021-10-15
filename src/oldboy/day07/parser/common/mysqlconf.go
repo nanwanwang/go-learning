@@ -6,4 +6,5 @@ type MysqlConfig struct{
 	Port    int  `ini:"port"`
 	Username  string  `ini:"username"`
 	Password  string   `ini:"password"`
+	IsAdmin    bool   `ini:"isadmin"`
 }
