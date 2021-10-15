@@ -110,7 +110,7 @@ func LoadIni(fileName string, data interface{}) (err error) {
 				fieldValue.SetString(value)
 			case reflect.Int, reflect.Int16, reflect.Int8, reflect.Int32, reflect.Int64:
 				var num int64
-				num, err = strconv.ParseInt(value, 0, 64)
+				num, err = strconv.ParseInt(value, 10, 64)
 				if err != nil {
 					err = fmt.Errorf("line:%d,value type error:%s", idx+1, value)
 					return
